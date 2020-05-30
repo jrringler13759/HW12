@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
-
+const db = require("./connectDB");
+const cTable = require("console.table");
 //functions to add to the db 
 
 async function addEmpl() {
@@ -39,7 +40,7 @@ async function addEmpl() {
 function insertEmpl (answers) {
 //insert into database
 console.log("Inserting a new employee...\n");
-  var query = connection.query(
+  var query = db.query(
     "INSERT INTO allEmpl SET ?",
     {
       first_name: answers.firstName,

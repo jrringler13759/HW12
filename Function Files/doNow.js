@@ -1,24 +1,11 @@
-const db = require("./connectDB");
+
 const inquirer = require("inquirer");
-const cTable = require("console.table");
+
 const add = require("./add");
 const query = require("./query");
 
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "bootcamp2020",
-  database: "employees_db"
-});
-
-connection.connect(function(err) {
-  if (err) throw err;
-});
-
-whatToDo();
-async function whatToDo () {
+doNow();
+async function doNow () {
   const answer = await inquirer.prompt([
     {
       type: "list",
