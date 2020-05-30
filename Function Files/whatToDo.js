@@ -1,6 +1,6 @@
-const mysql = require("mysql");
+const db = require("./connectDB");
 const inquirer = require("inquirer");
-const cTable = require('console.table');
+const cTable = require("console.table");
 const add = require("./add");
 const query = require("./query");
 
