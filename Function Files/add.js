@@ -95,12 +95,17 @@ async function insertDept (answers) {
  }
 
 
+
+
+
+
 //add role
 async function addRole() {
-    let allDept = await db.query("SELECT name FROM departments");
+    let allDept = await db.query("SELECT id, name FROM departments");
     let deptArr = allDept.map(dept => {
         return {
-            name: dept.title,
+            name: dept.name,
+            value: dept.id
         }
     })
     const answers = await inquirer.prompt([
@@ -126,12 +131,13 @@ async function addRole() {
 
 //insert role into database
 async function insertRole (answers) {
- //insert into database
  console.log("Inserting a new role...\n");
    return db.query(
-     "INSERT INTO role SET ?",
+     "INSERT INTO emplRole SET ?",
      {
-       name: answers.newDept
+       title: answers.newRole,
+       salary: answers.salary,
+       dept_ID: answers.roleDept
      }
    );
  }
