@@ -1,10 +1,31 @@
 const inquirer = require("inquirer");
 const db = require("./connectDB");
 const cTable = require("console.table");
+const util = require("util");
+
+db.query = util.promisify(db.query);
 //functions to add to the db 
 
+
+
+
 async function addEmpl() {
-   const answers = await inquirer.prompt([
+    let allRoles = await db.query("SELECT id, title FROM emplRole");
+    let rolesArr = allRoles.map(role => {
+        return {
+            name: role.title,
+            value: role.id
+        }
+    })
+    let allMan = await db.query("SELECT id, first_name, last_name FROM allEmpl");
+    let manArr = allMan.map(man => {
+        return {
+            name: man.first_name+ " " +man.last_name,
+            value: man.id
+        }
+    })
+    manArr.unshift({name: "This employee has no manager.", value: null})
+    const answers = await inquirer.prompt([
         {
             type: "input",
             name: "firstName",
@@ -19,45 +40,108 @@ async function addEmpl() {
             type: "list",
             name: "empRole",
             message: "What is the new employee's role?",
-            choices: [
-              "Waitress",
-              "Bartender",
-              "Busboy",
-              "Hostess",
-              "Dishwasher",
-              "PrepChef",
-              "FryCook",
-              "GrillCook",
-              "Kitchen_Manager",
-              "FrontOfHouse_Manager",
-              "General_Manager"
-            ]
+            choices: rolesArr
         },
+        {
+            type: "list",
+            name: "empMan",
+            message: "Who is the new employee's manager?",
+            choices: manArr
+        }
     ]);
     insertEmpl(answers)
 }
 
-function insertEmpl (answers) {
+async function insertEmpl (answers) {
 //insert into database
 console.log("Inserting a new employee...\n");
-  var query = db.query(
+  return db.query(
     "INSERT INTO allEmpl SET ?",
     {
       first_name: answers.firstName,
-      last_name: answers.lastName
-    },
-    function(err, res) {
-      if (err) throw err;
-      console.log(res.affectedRows + " employee inserted!\n");
+      last_name: answers.lastName,
+      role_ID: answers.empRole,
+      manager_ID: answers.empMan
     }
   );
-
-  // logs the actual query being run
-  console.log(query.sql);
-
 }
 
-exports.addEmpl = addEmpl;
 
+
+
+
+
+//add dept
+async function addDept() {
+    const answers = await inquirer.prompt([
+         {
+             type: "input",
+             name: "newDept",
+             message: "What is the name of the department you would like to add?"
+         }
+     ]);
+     insertDept(answers)
+ }
+ 
+//insert department into database
+async function insertDept (answers) {
+ console.log("Inserting a new department...\n");
+   return db.query(
+     "INSERT INTO departments SET ?",
+     {
+       name: answers.newDept
+     }
+   );
+ }
+
+
+//add role
+async function addRole() {
+    let allDept = await db.query("SELECT name FROM departments");
+    let deptArr = allDept.map(dept => {
+        return {
+            name: dept.title,
+        }
+    })
+    const answers = await inquirer.prompt([
+         {
+             type: "input",
+             name: "newRole",
+             message: "What is the name of the role you would like to add?"
+         },
+         {
+            type: "input",
+            name: "salary",
+            message: "What is salary for the new role?"
+        },
+        {
+            type: "list",
+            name: "roleDept",
+            message: "Which department does the role belong to?",
+            choices: deptArr
+        },
+     ]);
+     insertRole(answers)
+ }
+
+//insert role into database
+async function insertRole (answers) {
+ //insert into database
+ console.log("Inserting a new role...\n");
+   return db.query(
+     "INSERT INTO role SET ?",
+     {
+       name: answers.newDept
+     }
+   );
+ }
+
+
+
+
+
+exports.addEmpl = addEmpl;
+exports.addDept = addDept;
+exports.addRole = addRole;
 
 

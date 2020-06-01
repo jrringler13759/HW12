@@ -24,38 +24,57 @@ async function doNow () {
   doNext(answer.whatToDo);
 }
 
-function doNext(answer) {
+async function doNext(answer) {
   //switch statement based on answer from whatToDo
   //each case calls an add or query function from the required files
   switch  (answer) {
     case "Add an Employee":
-      add.addEmpl();
-    //   break;
-    // case "Add a Role":
-    //   add();
-    //   break;
-    // case "Add a Department":
-    //   add();
-    //   break;
-    // case "View all Employees":
-    //   add();
-    //   break;
-    // case "View all Roles":
-    //   add();
-    //   break;
-    // case "View all Departments":
-    //   add();
-    //   break;
-    // case "Update an Employee":
-    //   add();
-    //   break;
-    // case "Update a Role":
-    //   add();
-    //   break;
-    // case "Update a Department":
-    //   add();
-    //   break;
+      await add.addEmpl();
+      console.log("An employee has been added.");
+      doNow();
+      break;
+    case "Add a Role":
+      await add.addRole();
+      console.log("A role has been added.");
+      doNow();
+      break;
+    case "Add a Department":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
+    case "View all Employees":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
+    case "View all Roles":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
+    case "View all Departments":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
+    case "Update an Employee":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
+    case "Update a Role":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
+    case "Update a Department":
+      await add.addDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
           
   }
 
 }
+
