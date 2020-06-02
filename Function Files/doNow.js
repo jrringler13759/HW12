@@ -63,11 +63,6 @@ async function doNext(answer) {
       console.log("A department has been added.");
       doNow();
       break;
-    // case "Update Employee Manager":
-    //   await add.addDept();
-    //   console.log("A department has been added.");
-    //   doNow();
-    //   break;
     case "Update Role and Manager":
       await update.updateEmplRole();
       console.log("The role has been updated..");

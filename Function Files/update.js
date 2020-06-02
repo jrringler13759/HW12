@@ -57,15 +57,17 @@ async function updateEmplRole() {
 
 //insert role into database
 async function updateRole (answers) {
-console.log("Updating the role of an employee...\n");
-  return db.query("UPDATE allEmpl SET manager_ID=?, role_ID=? WHERE id=?, ",
-    [
-        answers.roleMan,
-        answers.newRole,
-        answers.chooseEmpl
-    ]
-  );
-}
+
+    console.log("Updating the role of an employee...\n");
+    let newUpdate =  await db.query("UPDATE allEmpl SET manager_ID=?, role_ID=? WHERE id=?, ",
+            [
+                answers.roleMan,
+                answers.newRole,
+                answers.chooseEmpl
+            ]
+        );
+    
+} 
 
 
 exports.updateEmplRole = updateEmplRole;
