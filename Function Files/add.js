@@ -6,9 +6,7 @@ const util = require("util");
 db.query = util.promisify(db.query);
 //functions to add to the db 
 
-
-
-
+// ADD EMPLOYEE
 async function addEmpl() {
     let allRoles = await db.query("SELECT id, title FROM emplRole");
     let rolesArr = allRoles.map(role => {
@@ -24,7 +22,10 @@ async function addEmpl() {
             value: man.id
         }
     })
-    manArr.unshift({name: "This employee has no manager.", value: null})
+    manArr.unshift({
+        name: "This employee has no manager.", 
+        value: null
+    })
     const answers = await inquirer.prompt([
         {
             type: "input",
@@ -68,10 +69,7 @@ console.log("Inserting a new employee...\n");
 
 
 
-
-
-
-//add dept
+// ADD DEPARTMENT
 async function addDept() {
     const answers = await inquirer.prompt([
          {
@@ -95,11 +93,7 @@ async function insertDept (answers) {
  }
 
 
-
-
-
-
-//add role
+// ADD ROLE
 async function addRole() {
     let allDept = await db.query("SELECT id, name FROM departments");
     let deptArr = allDept.map(dept => {
@@ -108,6 +102,7 @@ async function addRole() {
             value: dept.id
         }
     })
+    console.log(deptArr);
     const answers = await inquirer.prompt([
          {
              type: "input",

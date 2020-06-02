@@ -17,4 +17,8 @@ INSERT INTO emplRole (title, salary, dept_ID)
         ("Back of House Manager", 38000, 2), 
         ("Front of House Manager", 38000, 1);
 
-        
+
+INSERT INTO allempl (first_name, last_name, role_ID, manager_ID)
+    VALUES
+        ("sally", "baker", 10, null),
+        ("Albert", "Smith", 9, null )

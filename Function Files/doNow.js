@@ -3,6 +3,8 @@ const inquirer = require("inquirer");
 
 const add = require("./add");
 const query = require("./query");
+const update = require("./update");
+
 
 doNow();
 async function doNow () {
@@ -44,31 +46,31 @@ async function doNext(answer) {
       console.log("A department has been added.");
       doNow();
       break;
-    // case "View all Employees":
-    //   await add.addDept();
-    //   console.log("A department has been added.");
-    //   doNow();
-    //   break;
-    // case "View all Roles":
-    //   await add.addDept();
-    //   console.log("A department has been added.");
-    //   doNow();
-    //   break;
-    // case "View all Departments":
-    //   await add.addDept();
-    //   console.log("A department has been added.");
-    //   doNow();
-    //   break;
+    case "View all Employees":
+      await query.viewEmpl();
+      console.log("Viewing all Employees");
+      doNow();
+      break;
+    case "View all Roles":
+      await query.viewRole();
+      console.log("Viewing all Roles");
+      doNow();
+      break;
+    case "View all Departments":
+      await query.viewDept();
+      console.log("A department has been added.");
+      doNow();
+      break;
     // case "Update an Employee":
     //   await add.addDept();
     //   console.log("A department has been added.");
     //   doNow();
     //   break;
-    // case "Update a Role":
-    //   await add.addDept();
-    //   console.log("A department has been added.");
-    //   doNow();
-    //   break;
+    case "Update Role":
+      await update.updateEmplRole();
+      console.log("The role has been updated..");
+      doNow();
+      break;
     // case "Update a Department":
     //   await add.addDept();
     //   console.log("A department has been added.");

@@ -16,7 +16,7 @@ CREATE TABLE emplRole(
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10,2) NOT NULL,
     dept_ID INT NOT NULL,
-    FOREIGN KEY dept_ID
+    FOREIGN KEY (dept_ID)
         REFERENCES departments(id)
         ON DELETE CASCADE
 );
@@ -27,11 +27,11 @@ CREATE TABLE allEmpl(
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_ID INT, 
-    FOREIGN KEY role_ID
+    FOREIGN KEY (role_ID)
         REFERENCES emplRole(id)
         ON DELETE CASCADE
     manager_ID INT,
-    FOREIGN KEY manager_ID
+    FOREIGN KEY (manager_ID)
         REFERENCES allEmpl(id)
         ON DELETE CASCADE
 );
