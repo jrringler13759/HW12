@@ -20,7 +20,9 @@ async function doNow () {
         "Add an Employee",
         "Add a Role",
         "Add a Department",
-        "Update Role"]
+        "Update Role and Manager",
+        "Exit"
+      ]
     }
   ]);
   doNext(answer.whatToDo);
@@ -61,12 +63,12 @@ async function doNext(answer) {
       console.log("A department has been added.");
       doNow();
       break;
-    // case "Update an Employee":
+    // case "Update Employee Manager":
     //   await add.addDept();
     //   console.log("A department has been added.");
     //   doNow();
     //   break;
-    case "Update Role":
+    case "Update Role and Manager":
       await update.updateEmplRole();
       console.log("The role has been updated..");
       doNow();
@@ -76,8 +78,12 @@ async function doNext(answer) {
     //   console.log("A department has been added.");
     //   doNow();
     //   break;
-          
+    case "Exit": {
+      exitLoop = true;
+      process.exit(0); // successful exit
+    }
   }
-
 }
+
+
 
