@@ -11,3 +11,7 @@ To run the program you would need to run the schemma.sql and the seeds.sql files
 
 Then in your terminal type:
 node doNow.js
+
+```html
+<iframe src="https://drive.google.com/file/d/1Nsbh_VJj6DkOQTpPftBGn8MFR0x2Zpt8/preview" width="640" height="480"></iframe>
+```
