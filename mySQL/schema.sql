@@ -23,13 +23,13 @@ CREATE TABLE emplRole(
 
 
 CREATE TABLE allEmpl(
-    id INT auto_increment PRIMARY KEY
+    id INT auto_increment PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_ID INT, 
     FOREIGN KEY (role_ID)
         REFERENCES emplRole(id)
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
     manager_ID INT,
     FOREIGN KEY (manager_ID)
         REFERENCES allEmpl(id)

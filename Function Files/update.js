@@ -5,6 +5,7 @@ const util = require("util");
 db.query = util.promisify(db.query);
 
 
+// UPDATE EMPLOYEE ROLE AND MANAGER
 async function updateEmplRole() {
     let allRoles = await db.query("SELECT id, title FROM emplRole");
     let rolesArr = allRoles.map(role => {
@@ -58,15 +59,11 @@ async function updateEmplRole() {
 //insert role into database
 async function updateRole (answers) {
     console.log("Updating the role of an employee...\n");
-    return await db.query("UPDATE allEmpl SET manager_ID=?, role_ID=? WHERE id=?, ",
-            [
-                answers.roleMan,
-                answers.newRole,
-                answers.chooseEmpl
-            ]
-        );
+    return await db.query("UPDATE allEmpl SET manager_ID=?, role_ID=? WHERE id=?",
+    [answers.roleMan, answers.newRole, answers.chooseEmpl]
+  );
+}
     
-} 
 
 
 exports.updateEmplRole = updateEmplRole;

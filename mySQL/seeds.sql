@@ -21,4 +21,11 @@ INSERT INTO emplRole (title, salary, dept_ID)
 INSERT INTO allempl (first_name, last_name, role_ID, manager_ID)
     VALUES
         ("sally", "baker", 10, null),
-        ("Albert", "Smith", 9, null )
+        ("Albert", "Smith", 9, null),
+        ("Allison", "Jones", 1, 10),
+        ("Katy", "Alfonzo", 2, 10),
+        ("Robert", "Muurphy", 7, 9);
+        
+SELECT * FROM departments;
+SELECT * FROM emplRole;
+SELECT * FROM allEmpl;

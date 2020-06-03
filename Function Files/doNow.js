@@ -1,10 +1,9 @@
-
+const db = require("./connectDB");
 const inquirer = require("inquirer");
-
 const add = require("./add");
 const query = require("./query");
 const update = require("./update");
-
+const dbDelete = require("./delete");
 
 doNow();
 async function doNow () {
@@ -21,6 +20,9 @@ async function doNow () {
         "Add a Role",
         "Add a Department",
         "Update Role and Manager",
+        "Delete an Employee",
+        "Delete a Role",
+        "Delete a Department",
         "Exit"
       ]
     }
@@ -60,23 +62,33 @@ async function doNext(answer) {
       break;
     case "View all Departments":
       await query.viewDept();
-      console.log("A department has been added.");
+      console.log("Viewing all Departments.");
       doNow();
       break;
     case "Update Role and Manager":
       await update.updateEmplRole();
-      console.log("The role has been updated..");
+      console.log("The roleand manager have been updated..");
       doNow();
       break;
-    // case "Update a Department":
-    //   await add.addDept();
-    //   console.log("A department has been added.");
-    //   doNow();
-    //   break;
-    case "Exit": {
-      exitLoop = true;
-      process.exit(0); // successful exit
-    }
+    case "Delete an Employee":
+      await dbDelete.deleteEmployee();
+      console.log("The employee has been deleted");
+      doNow();
+      break;
+    case "Delete a Role":
+      await dbDelete.deleteRole();
+      console.log("The role has been deleted");
+      doNow();
+      break;
+    case "Delete a Department":
+      await dbDelete.deleteDepartment();
+      console.log("The department has been deleted");
+      doNow();
+      break;
+    default:
+      console.log("Now exiting the system");
+      db.end()
+      break;
   }
 }
 
