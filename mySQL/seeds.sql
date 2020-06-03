@@ -1,4 +1,5 @@
 USE employees_db;
+
 INSERT INTO departments (name) 
     VALUES 
         ("Front of House"),  
@@ -20,12 +21,15 @@ INSERT INTO emplRole (title, salary, dept_ID)
 
 INSERT INTO allempl (first_name, last_name, role_ID, manager_ID)
     VALUES
-        ("sally", "baker", 10, null),
+        ("Sally", "Baker", 10, null),
         ("Albert", "Smith", 9, null),
         ("Allison", "Jones", 1, 10),
         ("Katy", "Alfonzo", 2, 10),
-        ("Robert", "Muurphy", 7, 9);
-        
+        ("Stephanie", "Lewis", 3, 10),
+        ("Alisson", "Lange", 6, 9),
+        ("Jeffery", "Post", 7, 9),
+        ("Christian", "Owens", 8, 9);
+
 SELECT * FROM departments;
 SELECT * FROM emplRole;
 SELECT * FROM allEmpl;

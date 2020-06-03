@@ -30,9 +30,7 @@ CREATE TABLE allEmpl(
     FOREIGN KEY (role_ID)
         REFERENCES emplRole(id)
         ON DELETE CASCADE,
-    manager_ID INT,
-    FOREIGN KEY (manager_ID)
-        REFERENCES allEmpl(id)
-        ON DELETE CASCADE
+    manager_ID INT NULL
+    
 );
 
